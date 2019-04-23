@@ -1,0 +1,5 @@
+/Users/eronur/Library/Mobile Documents/com~apple~CloudDocs/workspace/bladerf-tun-interface/build/CMakeFiles/try.dir
+/Users/eronur/Library/Mobile Documents/com~apple~CloudDocs/workspace/bladerf-tun-interface/build/CMakeFiles/tx.dir
+/Users/eronur/Library/Mobile Documents/com~apple~CloudDocs/workspace/bladerf-tun-interface/build/CMakeFiles/rebuild_cache.dir
+/Users/eronur/Library/Mobile Documents/com~apple~CloudDocs/workspace/bladerf-tun-interface/build/CMakeFiles/edit_cache.dir
+/Users/eronur/Library/Mobile Documents/com~apple~CloudDocs/workspace/bladerf-tun-interface/build/CMakeFiles/rx.dir
