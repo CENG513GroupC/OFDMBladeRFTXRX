@@ -138,23 +138,33 @@ int main(int argc, char *argv[])
 	//It is a tun device so it will transfer the IP packets without containing ethernet header...
 	dev = tuntap_init();
 	if (tuntap_start(dev, TUNTAP_MODE_TUNNEL, TUNTAP_ID_ANY) == -1) {
+		printf("\n\nTun tap creation fault...");
 		return 1;
 	}
-	
+    printf("\n\nTun tap created...");
+
 	//We are correcting the device name, dev-> "tun0"
 	tuntap_set_ifname(dev, "tun0");
+    printf("\n\nName set okay ...");
+
 	
 	//Ip allocation for "tun0", 
 	if (tuntap_set_ip(dev, "10.0.0.1", 24) == -1) {
+		    printf("\n\nTun IP set error...");
+
 		return 1;
 	}
-	
+	printf("\n\nTun IP set tamam...");
+
 	//We are setting tun0 device running mode...
 	//They can be seen via "ifconfig" command...
 	if (tuntap_up(dev) == -1) {
+			printf("\n\nTun device up errror...");
+
 		return 1;
 	}
-	
+		printf("\n\nTun device up tamam...");
+
 	
     //tun_rx_fd = tun_alloc(name, IFF_TUN | IFF_NO_PI); -- old one...
     
@@ -235,7 +245,7 @@ Initialize the header and payload arrays with whatever values you wish.
     // create frame generator object with default properties
     ofdmflexframegen fg = ofdmflexframegen_create(M, cp_len, taper_len, NULL, NULL);
 
-
+	printf("\n\nFlex frame create...");
 
 
 
@@ -268,7 +278,7 @@ ofdmflexframegen_setprops(fg, &fgprops);
     
     
     
-    flexframegen_print(fg);
+  //  flexframegen_print(fg);
 
 
 
@@ -360,7 +370,7 @@ ofdmflexframegen_setprops(fg, &fgprops);
 			 * 
 			 * */
 			
-			symbol_len = flexframegen_getframelen(fg);
+			symbol_len = ofdmflexframegen_getframelen(fg);
 
 
 

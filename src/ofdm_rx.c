@@ -48,7 +48,7 @@
 #include "tuntap.h"
 void DisplayPacket(unsigned char*, int);
 int tun_tx_fd;
-
+ofdmflexframesync f_sync ;
 
 
 
@@ -176,7 +176,7 @@ int process_samples(int16_t * samples, unsigned int sample_length) {
 		
 		//flexframesync_execute copies data internall buffer when it receives full frame it calls the call back function of sync
 		for (int i=0; i<=sample_length; i=i+32)
-			ofdmflexframesync_execute(fs, &y[i], 32);
+			ofdmflexframesync_execute(f_sync, &y[i], 32);
 		free(y);
 	}
 	else
@@ -348,12 +348,12 @@ The receiver side uses an appropriate frame synchronizer object which simply pic
 
    
    
-    ofdmflexframesync fs =
+     f_sync =
         ofdmflexframesync_create(M, cp_len, taper_len, NULL, mycallback, NULL);
     
     
     
-    if ( fs==NULL)
+    if ( f_sync==NULL)
     {
         fprintf(stderr, "Failed to framesync64_create. Exiting.\n");
         goto out;
@@ -373,7 +373,7 @@ The receiver side uses an appropriate frame synchronizer object which simply pic
      * */
     
     //flexframesync_print(fs);
-    ofdmflexframesync_print(fs);
+    ofdmflexframesync_print(f_sync);
 
 
 
@@ -388,7 +388,7 @@ The receiver side uses an appropriate frame synchronizer object which simply pic
 out:
     bladerf_close(devrx);
     fprintf(stderr, "RX STATUS: %u,  %s\n", status, bladerf_strerror(status));
-    ofdmflexframesync_destroy(fs);    
+    ofdmflexframesync_destroy(f_sync);    
 
     
           tuntap_destroy(dev2);
